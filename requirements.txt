@@ -3,3 +3,5 @@ lxml
 deepdiff
 pandas
 mmh3
+numpy
+quickjs

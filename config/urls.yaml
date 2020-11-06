@@ -2,3 +2,8 @@ name: main
 url: https://alex.github.io/nyt-2020-election-scraper/battleground-state-changes.csv
 filter:
   - election_csv_clean
+---
+name: call
+url: https://static01.nyt.com/newsgraphics/2020/10/28/race-call-tracker/445f78c7794369b1f9f7453e15d77d79e36e5bdd/build/js/main.js
+filter:
+  - election_call_to_csv

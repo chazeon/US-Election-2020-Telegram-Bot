@@ -12,6 +12,15 @@ from io import StringIO
 logger = logging.getLogger(__name__)
 
 
+class ElectionCSVClean(FilterBase):
+
+    __kind__ = "election_csv_clean"
+
+    def filter(self, data, subfilter):
+        sio = StringIO()
+        for line in data.splitlines():
+            sio.write(",".join(line.split(",")[:13]) + "\n")
+        return sio.getvalue()
 
 class TelegramElectionReporter(TelegramReporter):
 
@@ -60,8 +69,8 @@ class TelegramElectionReporter(TelegramReporter):
             row["trailing_candidate_partition_percentage"] = row["trailing_candidate_partition"] * 100.0
             text = (
                 "*{state}* ({new_votes:,.0f} new, {votes_remaining:,.0f} remaining)\n"
-                "{leading_candidate_name:<6} ({leading_candidate_percentage:4.1f}%) - {leading_candidate_votes:8,d} (+{leading_candidate_change:6,.0f}, {leading_candidate_partition_percentage:.1f}%)\n"
-                "{trailing_candidate_name:<6} ({trailing_candidate_percentage:4.1f}%) - {trailing_candidate_votes:8,d} (+{trailing_candidate_change:6,.0f}, {trailing_candidate_partition_percentage:.1f}%)\n"
+                "{leading_candidate_name:<6} ({leading_candidate_percentage:4.1f}%) - {leading_candidate_votes:8,.0f} (+{leading_candidate_change:6,.0f}, {leading_candidate_partition_percentage:.1f}%)\n"
+                "{trailing_candidate_name:<6} ({trailing_candidate_percentage:4.1f}%) - {trailing_candidate_votes:8,.0f} (+{trailing_candidate_change:6,.0f}, {trailing_candidate_partition_percentage:.1f}%)\n"
                 "{leading_candidate_name} is leading by {vote_differential:,.0f} votes."
             ).format_map(row)
 

@@ -1,0 +1,5 @@
+urlwatch
+lxml
+deepdiff
+pandas
+mmh3

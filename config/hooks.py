@@ -39,7 +39,7 @@ class TelegramElectionReporter(TelegramReporter):
 
             sio = StringIO()
 
-            for lineno, line in enumerate(difflib.unified_diff(old_data, new_data)):
+            for lineno, line in enumerate(difflib.unified_diff(old_data.splitlines(), new_data.splitlines())):
                 if lineno < 3: continue
                 if line.startswith("+"):
                     sio.write(line[1:])

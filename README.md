@@ -1,8 +1,8 @@
 # US Election 2020 Telegram bot
 
-## How to use
-
 Track battleground state updates for US Election 2020 in Telegram.
+
+## How to use
 
 ### Installation
 

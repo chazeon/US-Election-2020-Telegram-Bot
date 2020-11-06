@@ -41,7 +41,6 @@ class TelegramElectionReporter(TelegramReporter):
             sio.seek(0)
 
             df = pandas.read_csv(sio, header=0, sep=",")
-            # df = df.loc[df["state"] != "state"]
 
             return df
                 
@@ -60,10 +59,10 @@ class TelegramElectionReporter(TelegramReporter):
             row["leading_candidate_partition_percentage"] = row["leading_candidate_partition"] * 100.0
             row["trailing_candidate_partition_percentage"] = row["trailing_candidate_partition"] * 100.0
             text = (
-                "*{state}* ({new_votes:,d} new, {votes_remaining:,d} remaining)\n"
+                "*{state}* ({new_votes:,.0f} new, {votes_remaining:,.0f} remaining)\n"
                 "{leading_candidate_name:<6} ({leading_candidate_percentage:4.1f}%) - {leading_candidate_votes:8,d} (+{leading_candidate_change:6,.0f}, {leading_candidate_partition_percentage:.1f}%)\n"
                 "{trailing_candidate_name:<6} ({trailing_candidate_percentage:4.1f}%) - {trailing_candidate_votes:8,d} (+{trailing_candidate_change:6,.0f}, {trailing_candidate_partition_percentage:.1f}%)\n"
-                "{leading_candidate_name} is leading by {vote_differential:,d} votes."
+                "{leading_candidate_name} is leading by {vote_differential:,.0f} votes."
             ).format_map(row)
 
             yield text

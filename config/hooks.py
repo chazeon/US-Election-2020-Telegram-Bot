@@ -46,7 +46,7 @@ class TelegramElectionReporter(TelegramReporter):
             for lineno, line in enumerate(difflib.unified_diff(old_data.splitlines(), new_data.splitlines())):
                 if lineno < 3: continue
                 if line.startswith("+"):
-                    sio.write(line[1:])
+                    sio.write(line[1:] + "\n")
             
             if not sio.getvalue().startswith("state"):
                 sio = StringIO(new_data.splitlines()[0] + "\n" + sio.getvalue())

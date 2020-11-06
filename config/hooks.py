@@ -51,7 +51,7 @@ class TelegramElectionReporter(TelegramReporter):
 
         if diff is None: raise StopIteration
 
-        for _, row in diff.iloc[0:10].iterrows():
+        for _, row in diff.iloc[:].iterrows():
             if row["new_votes"] == 0: continue
             row["leading_candidate_change"]  = row["new_votes"] * row["leading_candidate_partition"]
             row["trailing_candidate_change"] = row["new_votes"] * row["trailing_candidate_partition"]

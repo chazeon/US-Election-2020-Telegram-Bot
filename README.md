@@ -2,7 +2,7 @@
 
 ## How to use
 
-Send message to 
+Track battleground state updates for US Election 2020 in Telegram.
 
 ### Installation
 
